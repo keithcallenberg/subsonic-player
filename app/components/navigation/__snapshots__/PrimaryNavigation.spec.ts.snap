@@ -40,6 +40,9 @@ exports[`PrimaryNavigation > matches the snapshot 1`] = `
       <li class=""><a exactactiveclass="sidebarCurrentLink" class="centerItems buttonLink sidebarLink sidebarLink" draggable="false" title="Genres">
           <iconwaveform fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconwaveform><span class="clamp text">Genres</span>
         </a></li>
+      <li class=""><a exactactiveclass="sidebarCurrentLink" class="centerItems buttonLink sidebarLink sidebarLink" draggable="false" title="Folders">
+          <iconfolder fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconfolder><span class="clamp text">Folders</span>
+        </a></li>
     </ul>
   </li>
 </ul>"

@@ -85,6 +85,13 @@ export const SIDEBAR_DESKTOP_NAVIGATION: NavigationGroup[] = [
           name: ROUTE_NAMES.genres,
         },
       },
+      {
+        icon: ICONS.folder,
+        title: 'Folders',
+        to: {
+          name: ROUTE_NAMES.files,
+        },
+      },
     ],
     title: 'Your library',
   },
