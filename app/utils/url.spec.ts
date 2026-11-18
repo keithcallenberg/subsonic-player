@@ -1,4 +1,4 @@
-import { convertToQueryString, isUrl } from './url';
+import { convertToQueryString, isUrl, normaliseServerUrl } from './url';
 
 describe('convertToQueryString', () => {
   describe('when params is an empty object', () => {
@@ -61,6 +61,17 @@ describe('convertToQueryString', () => {
         ).toBe('param=Param&param1=Param&param1=Param+1&param2=Param+12');
       });
     });
+  });
+});
+
+describe('normaliseServerUrl', () => {
+  it.each([
+    ['https://www.server.com', 'https://www.server.com'],
+    ['https://www.server.com/', 'https://www.server.com'],
+    ['https://www.server.com//', 'https://www.server.com'],
+    ['  https://www.server.com/music/ ', 'https://www.server.com/music'],
+  ])('converts %s to %s', (server, expected) => {
+    expect(normaliseServerUrl(server)).toBe(expected);
   });
 });
 

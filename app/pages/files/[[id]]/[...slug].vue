@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import FileList from '@/components/file-browser/FileList.vue';
 import LoadingData from '@/components/notification/LoadingData.vue';
+import NoMediaMessage from '@/components/notification/NoMediaMessage.vue';
 import ButtonLink from '@/components/ui/ButtonLink.vue';
 import HeaderWithAction from '@/components/ui/HeaderWithAction.vue';
 import RefreshButton from '@/components/ui/RefreshButton.vue';
@@ -25,6 +26,12 @@ const {
     const musicDirectory = await getMediaLibraryContent(
       route.params as FilesParams,
     );
+
+    // Throw so the failure is not cached and is shown as an error, rather
+    // than as an empty folder.
+    if (!musicDirectory) {
+      throw new Error(DEFAULT_ERROR_MESSAGE);
+    }
 
     return {
       musicDirectory,
@@ -99,7 +106,15 @@ useHead({
   </HeaderWithAction>
 
   <LoadingData :status>
+    <NoMediaMessage
+      v-if="status === 'error'"
+      ref="loadError"
+      :icon="FALLBACK_ICON_BY_TYPE.noFolder"
+      message="This folder could not be loaded. Use the refresh button to try again."
+    />
+
     <FileList
+      v-else
       :folders="musicDirectoryData.musicDirectory.folders"
       :tracks
       @addToPlaylist="addToPlaylistModal"
