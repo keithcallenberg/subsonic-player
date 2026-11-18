@@ -40,6 +40,13 @@ mockNuxtImport('useMediaInformation', (original) => () => ({
   openTrackDetailsModal: openTrackDetailsModalMock,
 }));
 
+const dragStartMock = vi.hoisted(() => vi.fn());
+
+mockNuxtImport('useDragAndDrop', (original) => () => ({
+  ...original(),
+  dragStart: dragStartMock,
+}));
+
 const musicDirectoryDataMock = ref({
   musicDirectory: {
     folders: [],
@@ -58,7 +65,12 @@ mockNuxtImport('useAsyncData', () => () => ({
 }));
 
 const { useHeadTitleMock } = useHeadMock();
-const { addTrackToQueueMock, playTracksMock } = useAudioPlayerMock();
+const {
+  addTracksToQueueMock,
+  addTrackToQueueMock,
+  playTracksMock,
+  shuffleTracksMock,
+} = useAudioPlayerMock();
 
 const track = getFormattedTracksMock()[0];
 
@@ -93,6 +105,53 @@ describe('[...slug]', () => {
 
   it('sets the useHead function with correct title', () => {
     expect(useHeadTitleMock.value).toBe('Files');
+  });
+
+  describe.each([
+    ['playTracksButton', () => playTracksMock],
+    ['shuffleTracksButton', () => shuffleTracksMock],
+    ['addTracksToQueueButton', () => addTracksToQueueMock],
+  ])('when the %s is clicked', (ref, getMock) => {
+    beforeEach(async () => {
+      await wrapper.findComponent({ ref }).trigger('click');
+    });
+
+    it('calls the correct function with the directory tracks', () => {
+      expect(getMock()).toHaveBeenCalledWith(
+        musicDirectoryDataMock.value.musicDirectory.tracks,
+      );
+    });
+  });
+
+  describe('when the directory has no tracks', () => {
+    beforeEach(async () => {
+      musicDirectoryDataMock.value.musicDirectory.tracks = [];
+
+      wrapper = await factory();
+    });
+
+    afterEach(() => {
+      musicDirectoryDataMock.value.musicDirectory.tracks =
+        getFormattedTracksMock(2);
+    });
+
+    it.each([
+      'playTracksButton',
+      'shuffleTracksButton',
+      'addTracksToQueueButton',
+    ])('does not show the %s', (ref) => {
+      expect(wrapper.findComponent({ ref }).exists()).toBe(false);
+    });
+  });
+
+  describe('when the FileList component emits the dragStart event', () => {
+    beforeEach(() => {
+      wrapper.findComponent(FileList).vm.$emit('dragStart', track, 'event');
+    });
+
+    it('calls the dragStart function with the correct parameters', () => {
+      expect(dragStartMock).toHaveBeenCalledWith(track, 'event');
+    });
   });
 
   describe('when the RefreshButton emits the refresh event', () => {

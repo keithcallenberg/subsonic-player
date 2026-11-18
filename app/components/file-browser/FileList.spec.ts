@@ -4,7 +4,7 @@ import { getFormattedTracksMock } from '@@/test/helpers';
 import { mockNuxtImport } from '@nuxt/test-utils/runtime';
 import { mount, RouterLinkStub } from '@vue/test-utils';
 
-import FileListItem from '@/components/file-browser/FileListItem.vue';
+import TracklistGeneric from '@/components/tracklist/TracklistGeneric.vue';
 
 import FileList from './FileList.vue';
 
@@ -90,7 +90,7 @@ describe('FileList', () => {
     });
 
     it('does not show the tracks content', () => {
-      expect(wrapper.findComponent(FileListItem).exists()).toBe(false);
+      expect(wrapper.findComponent(TracklistGeneric).exists()).toBe(false);
     });
 
     it('shows the no folder files element', () => {
@@ -118,6 +118,27 @@ describe('FileList', () => {
     });
   });
 
+  describe('when the folders and tracks props are not empty arrays', () => {
+    beforeEach(() => {
+      wrapper = factory({
+        folders: tracks,
+        tracks,
+      });
+    });
+
+    it('shows the folder items', () => {
+      expect(wrapper.findAll('[data-test-id="folder"]')).toHaveLength(5);
+    });
+
+    it('shows the TracklistGeneric component', () => {
+      expect(wrapper.findComponent(TracklistGeneric).exists()).toBe(true);
+    });
+
+    it('does not show the no folder files element', () => {
+      expect(wrapper.find({ ref: 'noFoldersFiles' }).exists()).toBe(false);
+    });
+  });
+
   describe('when the tracks prop is not an empty array', () => {
     beforeEach(() => {
       wrapper = factory({
@@ -129,8 +150,14 @@ describe('FileList', () => {
       expect(wrapper.html()).toMatchSnapshot();
     });
 
-    it('shows the correct number of track items', () => {
-      expect(wrapper.findAllComponents(FileListItem)).toHaveLength(5);
+    it('shows the TracklistGeneric component', () => {
+      expect(wrapper.findComponent(TracklistGeneric).exists()).toBe(true);
+    });
+
+    it('sets the correct tracks prop on the TracklistGeneric component', () => {
+      expect(wrapper.findComponent(TracklistGeneric).props('tracks')).toEqual(
+        tracks,
+      );
     });
 
     it('does not show the no folder files element', () => {
@@ -142,12 +169,15 @@ describe('FileList', () => {
       ['mediaInformation', [track]],
       ['downloadMedia', [track]],
       ['addToQueue', [track]],
+      ['dragStart', [track, 'event']],
       ['playTrack', [0]],
     ])(
-      'when the FileListItem component emits the %s event',
+      'when the TracklistGeneric component emits the %s event',
       (eventName, expectedArgs) => {
         beforeEach(() => {
-          wrapper.findComponent(FileListItem).vm.$emit(eventName);
+          wrapper
+            .findComponent(TracklistGeneric)
+            .vm.$emit(eventName, ...expectedArgs);
         });
 
         it(`emits the ${eventName} event with the correct value`, () => {

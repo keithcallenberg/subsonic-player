@@ -15,7 +15,8 @@ exports[`FileList > matches the snapshot 1`] = `
       </div>
     </div>
   </div>
-</div>"
+</div>
+<!--v-if-->"
 `;
 
 exports[`FileList > when route params does have an Id > matches the snapshot 1`] = `
@@ -41,7 +42,8 @@ exports[`FileList > when route params does have an Id > matches the snapshot 1`]
       </div>
     </div>
   </div>
-</div>"
+</div>
+<!--v-if-->"
 `;
 
 exports[`FileList > when the folders prop is not an empty array > matches the snapshot 1`] = `
@@ -106,11 +108,12 @@ exports[`FileList > when the folders prop is not an empty array > matches the sn
       </a></div>
   </div>
   <!--v-if-->
-</div>"
+</div>
+<!--v-if-->"
 `;
 
 exports[`FileList > when the tracks prop is not an empty array > matches the snapshot 1`] = `
-"<div class="trackTable">
+"<div class="trackTable mBL">
   <div class="trackRow">
     <div class="trackCell"><a draggable="false">
         <div class="centerAll preloadImage trackImage">
@@ -121,6 +124,16 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
       </a></div>
   </div>
   <!--v-if-->
+</div>
+<div class="trackTable withPreview">
+  <div class="trackHeader">
+    <div class="trackCell">Track</div>
+    <div class="trackCell trackSecondary">Album</div>
+    <div class="trackCell trackSecondary">Artists</div>
+    <div class="trackCell trackTime">Duration</div>
+    <div class="trackCell trackOptions"></div>
+    <div class="trackCell trackOptions"></div>
+  </div>
   <div class="lazyLoadContent trackRow trackPlayPauseHover">
     <div class="interactionWrapper" draggable="false">
       <div class="trackCell">
@@ -132,15 +145,57 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
                 <iconplayerplay fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconplayerplay><span class="clamp text visuallyHidden"> Play track </span>
               </button></div>
           </div>
-          <div class="marqueeScroll mBXS" inert="">
-            <div class="bulletList inner">
-              <div class="content">
-                <h4>track-0</h4>
+          <div class="noTouchEvents trackMeta">
+            <div class="marqueeScroll mBXS" inert="">
+              <div class="bulletList inner">
+                <div class="content">
+                  <h4>track-0</h4>
+                </div>
               </div>
+            </div>
+            <div class="marqueeScroll smallFont mobileOnly mBXS">
+              <div class="bulletList inner">
+                <div class="content">
+                  <ul class="bulletList">
+                    <li><span class="visuallyHidden">Track album</span><a class="link" data-test-id="link">album</a></li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Track artists</span>
+                      <ul class="commaList">
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+                      </ul>
+                    </li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Duration</span><span><!--v-if--><time>02:00</time></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><button class="centerItems buttonLink alignRight desktopOnly desktopOnly" draggable="false" type="button" title="Like track">
+            <iconheart fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconheart><span class="clamp text visuallyHidden">Like track</span>
+          </button>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content"><a class="link" data-test-id="link">album</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content">
+              <ul class="commaList">
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <div class="trackCell trackTime"><time>02:00</time></div>
       <div class="trackCell trackOptions"><button class="centerItems buttonLink" draggable="false" type="button" title="Add to queue">
           <iconcircleplus fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconcircleplus><span class="clamp text visuallyHidden"> Add to queue </span>
         </button></div>
@@ -166,15 +221,57 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
                 <iconplayerplay fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconplayerplay><span class="clamp text visuallyHidden"> Play track </span>
               </button></div>
           </div>
-          <div class="marqueeScroll mBXS" inert="">
-            <div class="bulletList inner">
-              <div class="content">
-                <h4>track-1</h4>
+          <div class="noTouchEvents trackMeta">
+            <div class="marqueeScroll mBXS" inert="">
+              <div class="bulletList inner">
+                <div class="content">
+                  <h4>track-1</h4>
+                </div>
               </div>
+            </div>
+            <div class="marqueeScroll smallFont mobileOnly mBXS">
+              <div class="bulletList inner">
+                <div class="content">
+                  <ul class="bulletList">
+                    <li><span class="visuallyHidden">Track album</span><a class="link" data-test-id="link">album</a></li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Track artists</span>
+                      <ul class="commaList">
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+                      </ul>
+                    </li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Duration</span><span><!--v-if--><time>02:00</time></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><button class="centerItems buttonLink alignRight desktopOnly desktopOnly" draggable="false" type="button" title="Like track">
+            <iconheart fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconheart><span class="clamp text visuallyHidden">Like track</span>
+          </button>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content"><a class="link" data-test-id="link">album</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content">
+              <ul class="commaList">
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <div class="trackCell trackTime"><time>02:00</time></div>
       <div class="trackCell trackOptions"><button class="centerItems buttonLink" draggable="false" type="button" title="Add to queue">
           <iconcircleplus fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconcircleplus><span class="clamp text visuallyHidden"> Add to queue </span>
         </button></div>
@@ -200,15 +297,57 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
                 <iconplayerplay fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconplayerplay><span class="clamp text visuallyHidden"> Play track </span>
               </button></div>
           </div>
-          <div class="marqueeScroll mBXS" inert="">
-            <div class="bulletList inner">
-              <div class="content">
-                <h4>track-2</h4>
+          <div class="noTouchEvents trackMeta">
+            <div class="marqueeScroll mBXS" inert="">
+              <div class="bulletList inner">
+                <div class="content">
+                  <h4>track-2</h4>
+                </div>
               </div>
+            </div>
+            <div class="marqueeScroll smallFont mobileOnly mBXS">
+              <div class="bulletList inner">
+                <div class="content">
+                  <ul class="bulletList">
+                    <li><span class="visuallyHidden">Track album</span><a class="link" data-test-id="link">album</a></li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Track artists</span>
+                      <ul class="commaList">
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+                      </ul>
+                    </li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Duration</span><span><!--v-if--><time>02:00</time></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><button class="centerItems buttonLink alignRight desktopOnly desktopOnly" draggable="false" type="button" title="Like track">
+            <iconheart fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconheart><span class="clamp text visuallyHidden">Like track</span>
+          </button>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content"><a class="link" data-test-id="link">album</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content">
+              <ul class="commaList">
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <div class="trackCell trackTime"><time>02:00</time></div>
       <div class="trackCell trackOptions"><button class="centerItems buttonLink" draggable="false" type="button" title="Add to queue">
           <iconcircleplus fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconcircleplus><span class="clamp text visuallyHidden"> Add to queue </span>
         </button></div>
@@ -234,15 +373,57 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
                 <iconplayerplay fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconplayerplay><span class="clamp text visuallyHidden"> Play track </span>
               </button></div>
           </div>
-          <div class="marqueeScroll mBXS" inert="">
-            <div class="bulletList inner">
-              <div class="content">
-                <h4>track-3</h4>
+          <div class="noTouchEvents trackMeta">
+            <div class="marqueeScroll mBXS" inert="">
+              <div class="bulletList inner">
+                <div class="content">
+                  <h4>track-3</h4>
+                </div>
               </div>
+            </div>
+            <div class="marqueeScroll smallFont mobileOnly mBXS">
+              <div class="bulletList inner">
+                <div class="content">
+                  <ul class="bulletList">
+                    <li><span class="visuallyHidden">Track album</span><a class="link" data-test-id="link">album</a></li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Track artists</span>
+                      <ul class="commaList">
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+                      </ul>
+                    </li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Duration</span><span><!--v-if--><time>02:00</time></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><button class="centerItems buttonLink alignRight desktopOnly desktopOnly" draggable="false" type="button" title="Like track">
+            <iconheart fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconheart><span class="clamp text visuallyHidden">Like track</span>
+          </button>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content"><a class="link" data-test-id="link">album</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content">
+              <ul class="commaList">
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <div class="trackCell trackTime"><time>02:00</time></div>
       <div class="trackCell trackOptions"><button class="centerItems buttonLink" draggable="false" type="button" title="Add to queue">
           <iconcircleplus fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconcircleplus><span class="clamp text visuallyHidden"> Add to queue </span>
         </button></div>
@@ -268,15 +449,57 @@ exports[`FileList > when the tracks prop is not an empty array > matches the sna
                 <iconplayerplay fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconplayerplay><span class="clamp text visuallyHidden"> Play track </span>
               </button></div>
           </div>
-          <div class="marqueeScroll mBXS" inert="">
-            <div class="bulletList inner">
-              <div class="content">
-                <h4>track-4</h4>
+          <div class="noTouchEvents trackMeta">
+            <div class="marqueeScroll mBXS" inert="">
+              <div class="bulletList inner">
+                <div class="content">
+                  <h4>track-4</h4>
+                </div>
               </div>
+            </div>
+            <div class="marqueeScroll smallFont mobileOnly mBXS">
+              <div class="bulletList inner">
+                <div class="content">
+                  <ul class="bulletList">
+                    <li><span class="visuallyHidden">Track album</span><a class="link" data-test-id="link">album</a></li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Track artists</span>
+                      <ul class="commaList">
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                        <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+                      </ul>
+                    </li>
+                    <!--v-if-->
+                    <li><span class="visuallyHidden">Duration</span><span><!--v-if--><time>02:00</time></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div><button class="centerItems buttonLink alignRight desktopOnly desktopOnly" draggable="false" type="button" title="Like track">
+            <iconheart fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconheart><span class="clamp text visuallyHidden">Like track</span>
+          </button>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content"><a class="link" data-test-id="link">album</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="trackCell trackSecondary">
+        <div class="marqueeScroll">
+          <div class="bulletList inner">
+            <div class="content">
+              <ul class="commaList">
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name" class="link">name</a></li>
+                <li data-test-id="artist-list-item"><a aria-label="Go to artist name1" class="link">name1</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+      <div class="trackCell trackTime"><time>02:00</time></div>
       <div class="trackCell trackOptions"><button class="centerItems buttonLink" draggable="false" type="button" title="Add to queue">
           <iconcircleplus fill="none" size="24" strokewidth="1" aria-hidden="true" class="icon"></iconcircleplus><span class="clamp text visuallyHidden"> Add to queue </span>
         </button></div>
