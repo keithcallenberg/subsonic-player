@@ -3,7 +3,18 @@
 exports[`[...slug] > matches the snapshot 1`] = `
 "<div class="centerItems spaceBetween">
   <h1>Media Library</h1>
-  <div class="centerItems"><button class="centerItems buttonLink" draggable="false" type="button" id="refresh-data-button" title="Refresh page data"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-refresh icon" aria-hidden="true">
+  <div class="centerItems"><button class="centerItems buttonLink" draggable="false" type="button" id="play-all-button" title="Play tracks"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-player-play icon" aria-hidden="true">
+        <path d="M7 4v16l13 -8l-13 -8"></path>
+      </svg><span class="clamp text visuallyHidden"> Play tracks </span></button><button class="centerItems buttonLink" draggable="false" type="button" id="shuffle-all-button" title="Shuffle tracks"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-arrows-shuffle icon" aria-hidden="true">
+        <path d="M18 4l3 3l-3 3"></path>
+        <path d="M18 20l3 -3l-3 -3"></path>
+        <path d="M3 7h3a5 5 0 0 1 5 5a5 5 0 0 0 5 5h5"></path>
+        <path d="M21 7h-5a4.978 4.978 0 0 0 -3 1m-4 8a4.984 4.984 0 0 1 -3 1h-3"></path>
+      </svg><span class="clamp text visuallyHidden"> Shuffle tracks </span></button><button class="centerItems buttonLink" draggable="false" type="button" title="Add tracks to queue"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-circle-plus icon" aria-hidden="true">
+        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+        <path d="M9 12h6"></path>
+        <path d="M12 9v6"></path>
+      </svg><span class="clamp text visuallyHidden"> Add tracks to queue </span></button><button class="centerItems buttonLink" draggable="false" type="button" id="refresh-data-button" title="Refresh page data"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-refresh icon" aria-hidden="true">
         <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
         <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
       </svg><span class="clamp text visuallyHidden">Refresh page data</span></button></div>

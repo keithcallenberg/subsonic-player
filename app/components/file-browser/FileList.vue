@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FileListItem from '@/components/file-browser/FileListItem.vue';
 import PreloadImage from '@/components/media/PreloadImage.vue';
+import TracklistGeneric from '@/components/tracklist/TracklistGeneric.vue';
 import LazyLoadContent from '@/components/ui/LazyLoadContent.vue';
 import MarqueeScroll from '@/components/ui/MarqueeScroll.vue';
 
@@ -13,13 +13,21 @@ defineEmits<{
   addToPlaylist: [trackId: string];
   addToQueue: [track: Track];
   downloadMedia: [track: Track];
+  dragStart: [track: Track, event: DragEvent];
   mediaInformation: [track: Track];
   playTrack: [index: number];
 }>();
 </script>
 
 <template>
-  <div class="trackTable">
+  <div
+    v-if="
+      $route.params[ROUTE_PARAM_KEYS.files.id] ||
+      folders.length ||
+      !tracks.length
+    "
+    :class="['trackTable', { mBL: tracks.length }]"
+  >
     <div
       v-if="$route.params[ROUTE_PARAM_KEYS.files.id]"
       ref="goBack"
@@ -41,49 +49,32 @@ defineEmits<{
       </div>
     </div>
 
-    <template v-if="folders.length || tracks.length">
-      <template v-if="folders.length">
-        <LazyLoadContent
-          v-for="folder in folders"
-          :key="folder.id"
-          class="trackRow"
-          data-test-id="folder"
-        >
-          <div class="trackCell">
-            <NuxtLink draggable="false" :to="`${$route.fullPath}/${folder.id}`">
-              <PreloadImage
-                :alt="folder.name"
-                :class="$style.trackImage"
-                :image="folder.image"
-              />
+    <LazyLoadContent
+      v-for="folder in folders"
+      :key="folder.id"
+      class="trackRow"
+      data-test-id="folder"
+    >
+      <div class="trackCell">
+        <NuxtLink draggable="false" :to="`${$route.fullPath}/${folder.id}`">
+          <PreloadImage
+            :alt="folder.name"
+            :class="$style.trackImage"
+            :image="folder.image"
+          />
 
-              <MarqueeScroll class="mBXS" inert>
-                {{ folder.name }}
-              </MarqueeScroll>
-            </NuxtLink>
-          </div>
-        </LazyLoadContent>
-      </template>
+          <MarqueeScroll class="mBXS" inert>
+            {{ folder.name }}
+          </MarqueeScroll>
+        </NuxtLink>
+      </div>
+    </LazyLoadContent>
 
-      <template v-if="tracks.length">
-        <FileListItem
-          v-for="(track, index) in tracks"
-          :key="track.id"
-          :track
-          @addToPlaylist="$emit('addToPlaylist', track.id)"
-          @addToQueue="$emit('addToQueue', track)"
-          @downloadMedia="$emit('downloadMedia', track)"
-          @mediaInformation="$emit('mediaInformation', track)"
-          @playTrack="$emit('playTrack', index)"
-        />
-      </template>
-    </template>
-
-    <div v-else class="trackRow">
+    <div v-if="!folders.length && !tracks.length" class="trackRow">
       <div ref="noFoldersFiles" class="trackCell">
         <div>
           <PreloadImage
-            alt="Go back"
+            alt="No folders or files"
             :class="$style.trackImage"
             :image="FALLBACK_ICON_BY_TYPE.noFolder"
           />
@@ -93,6 +84,17 @@ defineEmits<{
       </div>
     </div>
   </div>
+
+  <TracklistGeneric
+    v-if="tracks.length"
+    :tracks
+    @addToPlaylist="(trackId) => $emit('addToPlaylist', trackId)"
+    @addToQueue="(track) => $emit('addToQueue', track)"
+    @downloadMedia="(track) => $emit('downloadMedia', track)"
+    @dragStart="(track, event) => $emit('dragStart', track, event)"
+    @mediaInformation="(track) => $emit('mediaInformation', track)"
+    @playTrack="(index) => $emit('playTrack', index)"
+  />
 </template>
 
 <style module>

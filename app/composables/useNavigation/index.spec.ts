@@ -107,6 +107,13 @@ describe('useNavigation', () => {
                 name: ROUTE_NAMES.genres,
               },
             },
+            {
+              icon: ICONS.folder,
+              title: 'Folders',
+              to: {
+                name: ROUTE_NAMES.files,
+              },
+            },
           ],
           title: 'Your library',
         },
@@ -284,6 +291,13 @@ describe('useNavigation', () => {
                 name: ROUTE_NAMES.genres,
               },
             },
+            {
+              icon: ICONS.folder,
+              title: 'Folders',
+              to: {
+                name: ROUTE_NAMES.files,
+              },
+            },
           ],
           title: 'Your library',
         },
@@ -425,6 +439,13 @@ describe('useNavigation', () => {
               title: 'Genres',
               to: {
                 name: ROUTE_NAMES.genres,
+              },
+            },
+            {
+              icon: ICONS.folder,
+              title: 'Folders',
+              to: {
+                name: ROUTE_NAMES.files,
               },
             },
           ],
