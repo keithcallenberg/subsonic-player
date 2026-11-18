@@ -55,13 +55,14 @@ const musicDirectoryDataMock = ref({
 });
 
 const refreshMock = vi.hoisted(() => vi.fn());
+const statusMock = ref('success');
 
 mockNuxtImport('useAsyncData', () => () => ({
   data: musicDirectoryDataMock,
   error: ref(null),
   pending: ref(false),
   refresh: refreshMock,
-  status: ref('success'),
+  status: statusMock,
 }));
 
 const { useHeadTitleMock } = useHeadMock();
@@ -141,6 +142,34 @@ describe('[...slug]', () => {
       'addTracksToQueueButton',
     ])('does not show the %s', (ref) => {
       expect(wrapper.findComponent({ ref }).exists()).toBe(false);
+    });
+  });
+
+  it('does not show the load error message', () => {
+    expect(wrapper.findComponent({ ref: 'loadError' }).exists()).toBe(false);
+  });
+
+  describe('when the directory fails to load', () => {
+    beforeEach(async () => {
+      statusMock.value = 'error';
+
+      wrapper = await factory();
+    });
+
+    afterEach(() => {
+      statusMock.value = 'success';
+    });
+
+    it('matches the snapshot', () => {
+      expect(wrapper.html()).toMatchSnapshot();
+    });
+
+    it('shows the load error message', () => {
+      expect(wrapper.findComponent({ ref: 'loadError' }).exists()).toBe(true);
+    });
+
+    it('does not show the FileList component', () => {
+      expect(wrapper.findComponent(FileList).exists()).toBe(false);
     });
   });
 

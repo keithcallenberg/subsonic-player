@@ -161,6 +161,19 @@ describe('loadSession', () => {
 });
 
 describe('getBaseOptions', () => {
+  describe('when the cookie server has a trailing slash', () => {
+    it('does not add a double slash to the baseURL', () => {
+      expect(
+        getBaseOptions(
+          cookieMock.replace(
+            'https://www.server.com',
+            'https://www.server.com/',
+          ),
+        ).baseURL,
+      ).toBe('https://www.server.com/rest');
+    });
+  });
+
   describe('when cookie is not in a correct format', () => {
     it('returns the correct response', () => {
       expect(getBaseOptions('incorrect=value')).toEqual({

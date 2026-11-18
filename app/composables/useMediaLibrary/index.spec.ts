@@ -104,8 +104,8 @@ describe('useMediaLibrary', () => {
         });
       });
 
-      it('returns the correct response', async () => {
-        expect(await getAction()('id')).toEqual(DEFAULT_MEDIA_LIBRARY);
+      it('returns null', async () => {
+        expect(await getAction()('id')).toBeNull();
       });
     });
 

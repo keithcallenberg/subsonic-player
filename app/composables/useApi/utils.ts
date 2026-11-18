@@ -21,7 +21,7 @@ export function getAuthParams(params: Partial<User>) {
 export function getBaseOptions(cookie: string) {
   const params = loadSession(cookie);
 
-  const baseURL = `${safeDecodeURIComponent(params.server!)}/rest`;
+  const baseURL = `${normaliseServerUrl(safeDecodeURIComponent(params.server!))}/rest`;
   const baseParams = {
     ...getAuthParams(params),
     ...getConfigParams(),

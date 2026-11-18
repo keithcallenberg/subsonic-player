@@ -28,7 +28,7 @@ export function useMediaLibrary() {
       }),
     });
 
-    return musicFoldersData || DEFAULT_MEDIA_LIBRARY;
+    return musicFoldersData;
   }
 
   async function getIndexes(musicFolderId: string) {
@@ -46,7 +46,7 @@ export function useMediaLibrary() {
       }),
     });
 
-    return indexesData || DEFAULT_MEDIA_LIBRARY;
+    return indexesData;
   }
 
   async function getMusicDirectory(id: string) {
@@ -68,7 +68,7 @@ export function useMediaLibrary() {
       },
     });
 
-    return musicDirectoryData || DEFAULT_MEDIA_LIBRARY;
+    return musicDirectoryData;
   }
 
   function getMediaLibraryContent(filesParams: FilesParams = {}) {

@@ -83,4 +83,19 @@ describe('buildSessionParams', () => {
       });
     });
   });
+
+  describe('when the server has a trailing slash', () => {
+    it.each(['apiKey', 'legacy', 'token'] as const)(
+      'removes the trailing slash for the %s authMethod',
+      (authMethod) => {
+        expect(
+          buildSessionParams({
+            ...authDataMock,
+            authMethod,
+            server: 'https://www.server.com/',
+          }).server,
+        ).toBe('https://www.server.com');
+      },
+    );
+  });
 });

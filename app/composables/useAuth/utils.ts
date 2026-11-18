@@ -14,13 +14,13 @@ export function buildSessionParams(auth: AuthData) {
       return {
         apiKey,
         authMethod,
-        server,
+        server: normaliseServerUrl(server),
       };
     case 'legacy':
       return {
         authMethod,
         password: `enc:${toHex(password)}`,
-        server,
+        server: normaliseServerUrl(server),
         username,
       };
     default: {
@@ -29,7 +29,7 @@ export function buildSessionParams(auth: AuthData) {
       return {
         authMethod,
         salt,
-        server,
+        server: normaliseServerUrl(server),
         token: md5(`${password}${salt}`),
         username,
       };

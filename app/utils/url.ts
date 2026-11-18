@@ -15,6 +15,10 @@ export function isUrl(url: string) {
   return /^https?:\/\/[^ "]+$/.test(url.toLowerCase());
 }
 
+export function normaliseServerUrl(server: string) {
+  return server.trim().replace(/\/+$/, '');
+}
+
 /* istanbul ignore next -- @preserve */
 export function parseQueryString(query = '') {
   return new URLSearchParams(query);
